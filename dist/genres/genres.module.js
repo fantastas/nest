@@ -15,16 +15,19 @@ const genre_schema_1 = require("../schemas/genre.schema");
 const artists_module_1 = require("../artists/artists.module");
 const artists_service_spec_1 = require("../artists/artists.service.spec");
 const artists_controller_1 = require("../artists/artists.controller");
+const genreFeature = mongoose_1.MongooseModule.forFeature([{
+        name: genre_schema_1.Genre.name, schema: genre_schema_1.GenreSchema
+    }]);
 let GenresModule = class GenresModule {
 };
 GenresModule = __decorate([
     common_1.Module({
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: genre_schema_1.Genre.name, schema: genre_schema_1.GenreSchema }]),
+            genreFeature,
             artists_module_1.ArtistModule,
         ],
-        controllers: [genres_controller_1.GenresController, artists_controller_1.ArtistsController],
-        providers: [genres_service_1.GenresService, artists_service_spec_1.ArtistsService],
+        controllers: [genres_controller_1.GenresController],
+        providers: [genres_service_1.GenresService],
     })
 ], GenresModule);
 exports.GenresModule = GenresModule;
