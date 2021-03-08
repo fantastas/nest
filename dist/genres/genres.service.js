@@ -21,7 +21,6 @@ const genre_schema_1 = require("../schemas/genre.schema");
 const common_2 = require("@nestjs/common");
 const common_3 = require("@nestjs/common");
 const artist_schema_1 = require("../schemas/artist.schema");
-const artists_module_1 = require("../artists/artists.module");
 let GenresService = class GenresService {
     constructor(genreModel, artistModel) {
         this.genreModel = genreModel;

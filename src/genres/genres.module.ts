@@ -3,16 +3,20 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GenresController } from './genres.controller';
 import { GenresService } from './genres.service';
 import { Genre, GenreSchema } from '../schemas/genre.schema';
-import { ArtistModule } from 'src/artists/artists.module';
+import { ArtistModule } from '../artists/artists.module';
 import { ArtistsService } from 'src/artists/artists.service.spec';
 import { ArtistsController } from 'src/artists/artists.controller';
 
+const genreFeature = MongooseModule.forFeature([{
+  name: Genre.name, schema: GenreSchema
+}]);
+
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Genre.name, schema: GenreSchema }]),
+    genreFeature,
     ArtistModule,
   ],
-  controllers: [GenresController, ArtistsController],
-  providers: [GenresService, ArtistsService],
+  controllers: [GenresController],
+  providers: [GenresService],
 })
 export class GenresModule {}
